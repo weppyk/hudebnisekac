@@ -21,6 +21,9 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
+        #assets_base_urls:
+        #            http:
+        #                - 'web/bundles/framework'
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_hosts:   ~
@@ -67,3 +70,9 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
