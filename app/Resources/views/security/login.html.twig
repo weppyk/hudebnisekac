@@ -1,18 +1,28 @@
 {# src/AppBundle/Resources/views/Security/login.html.twig #}
+{% extends 'base.html.twig' %}
 
+{% block body %}
 {% if error %}
     <div>{{ error.message }}</div>
 {% endif %}
+<div class="row">
 
-<body>
-<form class="form-group" action="{{ path('login') }}" method="post">
-    <label for="username">Username:</label>
-    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" />
+    <form class="col-sm-4 well form-group col-sm-offset-4" action="{{ path('login') }}" method="post">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" />
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input class="form-control" type="password" id="password" name="_password" />
+        </div>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
+        <input type="hidden" name="_target_path" value="/" />
 
-    <input type="hidden" name="_target_path" value="/" />
+        <button class="btn btn-default" type="submit" name="login" ><i class="glyphicon glyphicon-log-in"> </i> &nbsp;login</button>
+    </form>
 
-    <input class="btn btn-default" type="submit" name="login" />
-</form>
+
+
+</div>
+{% endblock %}
