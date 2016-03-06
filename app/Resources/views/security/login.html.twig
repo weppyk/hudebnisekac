@@ -1,16 +1,18 @@
 {# src/AppBundle/Resources/views/Security/login.html.twig #}
+
 {% if error %}
     <div>{{ error.message }}</div>
 {% endif %}
 
-<form action="{{ path('login') }}" method="post">
+<body>
+<form class="form-group" action="{{ path('login') }}" method="post">
     <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" />
 
     <label for="password">Password:</label>
     <input type="password" id="password" name="_password" />
 
     <input type="hidden" name="_target_path" value="/" />
 
-    <input type="submit" name="login" />
+    <input class="btn btn-default" type="submit" name="login" />
 </form>

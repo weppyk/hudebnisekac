@@ -44,6 +44,11 @@ class User implements UserInterface, \Serializable
     private $email;
 
     /**
+     * @ORM\Column(type="json_array")
+     */
+    private $roles = array();
+
+    /**
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
@@ -82,10 +87,26 @@ class User implements UserInterface, \Serializable
         return null;
     }
 
+    /**
+     * Returns the roles or permissions granted to the user for security.
+     */
     public function getRoles()
     {
-        return array('ROLE_USER');
+        $roles = $this->roles;
+
+        // guarantees that a user always has at least one role for security
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
     }
+
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+    }
+
 
     public function eraseCredentials()
     {
