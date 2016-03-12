@@ -8,3 +8,8 @@ user_registration:
 
 logout:
     path: /logout
+
+products:
+    path: /products.json
+    defaults:
+        _controller: AppBundle\Controller\SerializerController:productJsonAction
